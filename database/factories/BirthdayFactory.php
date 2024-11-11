@@ -20,7 +20,7 @@ class BirthdayFactory extends Factory
             'name' => fake()->name,
             'date' => fake()->date,
             'present-idea' => fake()->word,
-            'creator' => 'Rene',
+            'user_id' => fake()->number(),
             'relationship-category' => 'family'
         ];
     }

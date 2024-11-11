@@ -3,16 +3,15 @@
 namespace App\Http\Controllers;
 
 use App\Models\Birthday;
-use Illuminate\Http\Request;
+use App\Models\User;
+use Auth;
 
 class BirthdayController extends Controller
 {
     public function index()
     {
-
-
         return view('birthday.index', [
-            'birthdays' => Birthday::all(),
+            'birthdays' => User::find(Auth::user()->id)->birthdays,
         ]);
     }
 
@@ -33,7 +32,7 @@ class BirthdayController extends Controller
         Birthday::create([
             'name' => request('name'),
             'date' => request('date'),
-            'creator' => 'UserName',
+            'user_id' => Auth::user()->id,
             'present-idea' => request('present-idea'),
             'relationship' => request('relationship'),
         ]);
@@ -63,7 +62,7 @@ class BirthdayController extends Controller
         $birthday->update([
             'name' => request('name'),
             'date' => request('date'),
-            'creator' => 'UserName',
+            'user_id' => Auth::user()->id,
             'present-idea' => request('present-idea'),
             'relationship' => request('relationship'),
         ]);

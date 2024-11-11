@@ -14,19 +14,19 @@
         <nav class="flex justify-between items-center px-4 py-2 bg-gray-400 ">
             <div class="space-x-2">
                 <x-nav-link href="/" :active="request()->is('/')">Home</x-nav-link>
-                <x-nav-link href="/" :active="request()->is('')">Lern-Bereich</x-nav-link>
-                <x-nav-link href="/birthdays" :active="request()->is('birthdays')">Geburtstage</x-nav-link>
+                <x-nav-link href="/birthdays" :active="request()->is('birthdays')">Birthdays</x-nav-link>
+                <x-nav-link href="/friends" :active="request()->is('friends')">Friends</x-nav-link>
             </div>
             <div class="space-x-2">
                 @guest
-                    <x-nav-link href="/" :active="request()->is('login')">Log In</x-nav-link>
-                    <x-nav-link href="/" :active="request()->is('register')">Register</x-nav-link>
+                    <x-nav-link href="/login" :active="request()->is('login')">Log In</x-nav-link>
+                    <x-nav-link href="/register" :active="request()->is('register')">Register</x-nav-link>
                 @endguest
 
                 @auth
                     <form action="/logout" method="POST">
                         @csrf
-                        <a href="">Log out</a>
+                        <x-form-button>logout</x-form-button>
                     </form>
                 @endauth
             </div>
