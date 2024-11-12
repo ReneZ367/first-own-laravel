@@ -43,6 +43,14 @@ class FriendController extends Controller
             ]);
         }
 
+        //dd(Friend::where('user_friend_id', Auth::user()->friend_id)->where('friend_id', $attributes['friend_id'])->first('friend_id'));
+
+        if ($attributes['friend_id'] == Friend::where('user_friend_id', Auth::user()->friend_id)->where('friend_id', $attributes['friend_id'])->value('friend_id')) {
+            throw ValidationException::withMessages([
+                'user_friend_id' => 'already added',
+            ]);
+        }
+
         Friend::create($attributes);
         return redirect('/friends');
     }
@@ -64,6 +72,14 @@ class FriendController extends Controller
         return redirect('/friends');
     }
     public function destroy(Friend $id)
+    {
+
+        Friend::where('user_friend_id', $id['friend_id'])->where('friend_id', $id['user_friend_id'])->delete();
+        $id->delete();
+        return redirect('/friends');
+    }
+
+    public function deny(Friend $id)
     {
         $id->delete();
         return redirect('/friends');
