@@ -1,4 +1,9 @@
 <x-layout>
+    @auth
+        <div class="text-right">
+            <p>{{ $userName }}</p>
+        </div>
+    @endauth
 
     <section class="text-center pt-6">
         <h1 class="font-bold text-4xl">Dashboard</h1>

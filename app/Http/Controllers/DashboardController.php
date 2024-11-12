@@ -13,9 +13,8 @@ class DashboardController extends Controller
     {
         if (Auth::check()) {
             return view('dashboard.index', [
-
                 'birthdays' => User::find(Auth::user()->id)->birthdays,
-
+                'userName' => Auth::user()->name,
             ]);
         } else {
             return view('dashboard.index');

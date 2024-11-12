@@ -20,8 +20,8 @@ class BirthdayFactory extends Factory
             'name' => fake()->name,
             'date' => fake()->date,
             'present-idea' => fake()->word,
-            'user_id' => fake()->number(),
-            'relationship-category' => 'family'
+            'user_id' => fake()->numberBetween(1, 100000),
+            'relationship' => 'family'
         ];
     }
 }

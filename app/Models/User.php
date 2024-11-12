@@ -6,6 +6,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Auth;
 
 class User extends Authenticatable
 {
@@ -18,10 +19,10 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'first_name',
-        'last_name',
+        'name',
         'email',
         'password',
+        'friend_id',
     ];
 
     /**
@@ -50,5 +51,18 @@ class User extends Authenticatable
     public function birthdays()
     {
         return $this->hasMany(Birthday::class);
+    }
+    public static function fullname($firstName, $lastName): string
+    {
+        return "$firstName $lastName";
+    }
+
+    public static function uniqueFriendID()
+    {
+        do {
+            $number = random_int(100000, 999999);
+        } while (User::where('friend_id', $number)->exists());
+
+        return $number;
     }
 }

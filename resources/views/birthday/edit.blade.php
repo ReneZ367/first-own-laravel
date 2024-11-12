@@ -54,7 +54,7 @@
             </div>
 
             <div class="mt-6 flex items-center justify-end gap-x-6">
-                <x-form-button form="delete-form" class="bg-red-500">Delete</x-form-button>
+                <x-form-button form="delete-form" class="bg-red-400">Delete</x-form-button>
                 <a href="/birthdays" class="text-sm font-semibold leading-6 text-gray-900">Cancel</a>
                 <x-form-button>Save</x-form-button>
             </div>

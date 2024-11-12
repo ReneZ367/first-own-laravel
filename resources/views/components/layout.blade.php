@@ -9,7 +9,7 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
-<body class="mt-2 align-middle">
+<body class="align-middle">
     <header>
         <nav class="flex justify-between items-center px-4 py-2 bg-gray-400 ">
             <div class="space-x-2">
@@ -24,10 +24,12 @@
                 @endguest
 
                 @auth
-                    <form action="/logout" method="POST">
-                        @csrf
-                        <x-form-button>logout</x-form-button>
-                    </form>
+                    <div>
+                        <form action="/logout" method="POST">
+                            @csrf
+                            <x-form-button>logout</x-form-button>
+                        </form>
+                    </div>
                 @endauth
             </div>
         </nav>
