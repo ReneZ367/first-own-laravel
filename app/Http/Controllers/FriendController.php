@@ -43,11 +43,9 @@ class FriendController extends Controller
             ]);
         }
 
-        //dd(Friend::where('user_friend_id', Auth::user()->friend_id)->where('friend_id', $attributes['friend_id'])->first('friend_id'));
-
         if ($attributes['friend_id'] == Friend::where('user_friend_id', Auth::user()->friend_id)->where('friend_id', $attributes['friend_id'])->value('friend_id')) {
             throw ValidationException::withMessages([
-                'user_friend_id' => 'already added',
+                'date' => 'Not correct format',
             ]);
         }
 
@@ -58,7 +56,7 @@ class FriendController extends Controller
     {
         $id->update(['accepted' => true]);
 
-
+        //switch user and friend so that both users have friend connection
         $attributes = [
             'user_name' => $id['friend_name'],
             'user_friend_id' => $id['friend_id'],
@@ -67,13 +65,12 @@ class FriendController extends Controller
             'accepted' => true,
         ];
 
-
         Friend::create($attributes);
         return redirect('/friends');
     }
     public function destroy(Friend $id)
     {
-
+        //delete both friend connections
         Friend::where('user_friend_id', $id['friend_id'])->where('friend_id', $id['user_friend_id'])->delete();
         $id->delete();
         return redirect('/friends');
@@ -81,6 +78,7 @@ class FriendController extends Controller
 
     public function deny(Friend $id)
     {
+        //delete friend request
         $id->delete();
         return redirect('/friends');
     }

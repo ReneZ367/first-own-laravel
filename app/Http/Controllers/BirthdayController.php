@@ -2,16 +2,20 @@
 
 namespace App\Http\Controllers;
 
+use DateTime;
 use App\Models\Birthday;
 use App\Models\User;
 use Auth;
+use Illuminate\Validation\ValidationException;
 
 class BirthdayController extends Controller
 {
     public function index()
     {
+        $brithdays = User::find(Auth::user()->id)->birthdays()->orderByRaw('STR_TO_DATE(date, "%d.%m.%Y")')->get();
+
         return view('birthday.index', [
-            'birthdays' => User::find(Auth::user()->id)->birthdays,
+            'birthdays' => $brithdays,
         ]);
     }
 
@@ -31,7 +35,8 @@ class BirthdayController extends Controller
 
         Birthday::create([
             'name' => request('name'),
-            'date' => request('date'),
+            'Birthdate' => request('date'),
+            'date' => $this->stripYearFromDate(request('date')),
             'user_id' => Auth::user()->id,
             'present-idea' => request('present-idea'),
             'relationship' => request('relationship'),
@@ -61,7 +66,8 @@ class BirthdayController extends Controller
 
         $birthday->update([
             'name' => request('name'),
-            'date' => request('date'),
+            'Birthdate' => request('date'),
+            'date' => $this->stripYearFromDate(request('date')),
             'user_id' => Auth::user()->id,
             'present-idea' => request('present-idea'),
             'relationship' => request('relationship'),
@@ -75,5 +81,17 @@ class BirthdayController extends Controller
         $birthday->delete();
 
         return redirect('/birthdays');
+    }
+    public function stripYearFromDate($dateString)
+    {
+        $date = DateTime::createFromFormat('d.m.Y', $dateString);
+        if ($date === false) {
+            throw ValidationException::withMessages([
+                'date' => 'Wrong Format',
+            ]);
+        } else {
+            $formattedDate = $date->format('d.m');
+            return $formattedDate;
+        }
     }
 }

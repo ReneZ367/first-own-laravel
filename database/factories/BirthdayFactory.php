@@ -18,9 +18,9 @@ class BirthdayFactory extends Factory
     {
         return [
             'name' => fake()->name,
-            'date' => fake()->date,
+            'date' => $this->faker->date('d.m.Y'),
             'present-idea' => fake()->word,
-            'user_id' => fake()->numberBetween(1, 100000),
+            'user_id' => 1,
             'relationship' => 'family'
         ];
     }

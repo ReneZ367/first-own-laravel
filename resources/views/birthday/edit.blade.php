@@ -6,51 +6,47 @@
             @csrf
             @method('PATCH')
 
-            <div class="space-y-12">
-                <div class="mt-4 border-b border-gray-900/10 pb-12">
+            <div class="mt-4 border-b border-gray-900/10 pb-12">
 
-                    <x-form-field>
-                        <x-form-label for="name">Name</x-form-label>
+                <x-form-field>
+                    <x-form-label for="name">Name</x-form-label>
 
-                        <div>
-                            <x-form-input name="name" id="name" value="{{ $birthday['name'] }}" />
-                            <x-form-error name="name" />
-                        </div>
+                    <div>
+                        <x-form-input name="name" id="name" value="{{ $birthday['name'] }}" />
+                        <x-form-error name="name" />
+                    </div>
 
-                    </x-form-field>
+                </x-form-field>
 
-                    <x-form-field>
-                        <x-form-label for="name">Datum</x-form-label>
+                <x-form-field>
+                    <x-form-label for="name">Datum</x-form-label>
 
-                        <div>
-                            <x-form-input name="date" id="date" value="{{ $birthday['date'] }}" />
-                            <x-form-error name="date" />
-                        </div>
+                    <div>
+                        <x-form-input name="date" id="date" value="{{ $birthday['date'] }}" />
+                        <x-form-error name="date" />
+                    </div>
 
-                    </x-form-field>
+                </x-form-field>
 
-                    <x-form-field>
-                        <x-form-label for="name">Geschenk Idee</x-form-label>
+                <x-form-field>
+                    <x-form-label for="name">Geschenk Idee</x-form-label>
 
-                        <div>
-                            <x-form-input name="present-idea" id="present-idea"
-                                value="{{ $birthday['present-idea'] }}" />
-                            <x-form-error name="presentIdea" />
-                        </div>
+                    <div>
+                        <x-form-input name="present-idea" id="present-idea" value="{{ $birthday['present-idea'] }}" />
+                        <x-form-error name="presentIdea" />
+                    </div>
 
-                    </x-form-field>
+                </x-form-field>
 
-                    <x-form-field>
-                        <x-form-label for="name">Freunde oder Fam?</x-form-label>
+                <x-form-field>
+                    <x-form-label for="name">Freunde oder Fam?</x-form-label>
 
-                        <div>
-                            <x-form-input name="relationship" id="relationship"
-                                value="{{ $birthday['relationship'] }}" />
-                            <x-form-error name="relationship" />
-                        </div>
+                    <div>
+                        <x-form-input name="relationship" id="relationship" value="{{ $birthday['relationship'] }}" />
+                        <x-form-error name="relationship" />
+                    </div>
+                </x-form-field>
 
-                    </x-form-field>
-                </div>
             </div>
 
             <div class="mt-6 flex items-center justify-end gap-x-6">

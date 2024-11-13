@@ -28,9 +28,15 @@ Route::get('/login', [SessionController::class, 'login'])->name('login')->middle
 Route::post('/login', [SessionController::class, 'store'])->middleware('guest');
 Route::post('/logout', [SessionController::class, 'destroy'])->middleware('auth');
 
-Route::get('/friends', [FriendController::class, 'index'])->middleware('auth');
-Route::get('/create-friend', [FriendController::class, 'create'])->middleware('auth');
-Route::post('/create-friend', [FriendController::class, 'store'])->middleware('auth');
-Route::patch('/accept-friend/{id}', [FriendController::class, 'acceptFriend'])->middleware('auth');
-Route::delete('/deny-friend/{id}', [FriendController::class, 'deny'])->middleware('auth');
-Route::delete('/delete-friend/{id}', [FriendController::class, 'destroy'])->middleware('auth');
+
+Route::middleware('auth')->group(function () {
+    Route::controller(FriendController::class)->group(function () {
+        Route::get('/friends', 'index');
+        Route::get('/create-friend', 'create');
+        Route::post('/create-friend', 'store');
+        Route::patch('/accept-friend/{id}', 'acceptFriend');
+        Route::delete('/deny-friend/{id}', 'deny');
+        Route::delete('/delete-friend/{id}', 'destroy');
+    });
+});
+
