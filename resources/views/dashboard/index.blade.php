@@ -21,7 +21,7 @@
             <h3 class="font-bold mb-1">Anstehende Geburtstage</h3>
             <div class="py-1">
                 @foreach ($birthdays as $birthday)
-                    <x-birthday-upcomming :$birthday />
+                    <x-birthday-upcoming :$birthday />
                 @endforeach
             </div>
 

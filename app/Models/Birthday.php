@@ -12,6 +12,7 @@ class Birthday extends Model
 
     protected $fillable = [
         'name',
+        'birth_date',
         'date',
         'user_id',
         'present-idea',

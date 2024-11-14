@@ -13,6 +13,7 @@ return new class extends Migration {
         Schema::create('birthdays', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->string('birth_date');
             $table->string('date');
             $table->string('present-idea');
             $table->string('user_id');

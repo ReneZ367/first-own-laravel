@@ -6,16 +6,17 @@ use DateTime;
 use App\Models\Birthday;
 use App\Models\User;
 use Auth;
+use Carbon\Carbon;
 use Illuminate\Validation\ValidationException;
 
 class BirthdayController extends Controller
 {
     public function index()
     {
-        $brithdays = User::find(Auth::user()->id)->birthdays()->orderByRaw('STR_TO_DATE(date, "%d.%m.%Y")')->get();
+        $birthdays = User::find(Auth::user()->id)->birthdays()->orderByRaw('STR_TO_DATE(date, "%d.%m")')->get();
 
         return view('birthday.index', [
-            'birthdays' => $brithdays,
+            'birthdays' => $birthdays,
         ]);
     }
 
@@ -35,7 +36,7 @@ class BirthdayController extends Controller
 
         Birthday::create([
             'name' => request('name'),
-            'Birthdate' => request('date'),
+            'birth_date' => request('date'),
             'date' => $this->stripYearFromDate(request('date')),
             'user_id' => Auth::user()->id,
             'present-idea' => request('present-idea'),
@@ -66,7 +67,7 @@ class BirthdayController extends Controller
 
         $birthday->update([
             'name' => request('name'),
-            'Birthdate' => request('date'),
+            'birth_date' => request('date'),
             'date' => $this->stripYearFromDate(request('date')),
             'user_id' => Auth::user()->id,
             'present-idea' => request('present-idea'),

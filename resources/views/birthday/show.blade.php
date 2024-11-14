@@ -4,7 +4,7 @@
     <x-section-wrapper>
         <div class="">
             <p class="p-1">{{ $birthday['name'] }}</p>
-            <p class="p-1">{{ $birthday['date'] }}</p>
+            <p class="p-1">{{ $birthday['birth_date'] }}</p>
             <p class="p-1">{{ $birthday['present-idea'] }}</p>
             <p class="p-1">{{ $birthday['relationship'] }}</p>
             <hr>

@@ -11,8 +11,9 @@ class FriendController extends Controller
 {
     public function index()
     {
-        $friendRequests = Friend::where('friend_id', Auth::user()->friend_id)->where('accepted', false)->get();
-        $friends = Friend::where('user_friend_id', Auth::user()->friend_id)->where('accepted', true)->get();
+        $currentUserFriendID = Auth::user()->friend_id;
+        $friendRequests = Friend::where('friend_id', $currentUserFriendID)->where('accepted', false)->get();
+        $friends = Friend::where('user_friend_id', $currentUserFriendID)->where('accepted', true)->get();
 
         return view('friend.index', [
             'friends' => $friends,
@@ -82,5 +83,9 @@ class FriendController extends Controller
         $id->delete();
         return redirect('/friends');
     }
+
+    /*     public static function getFriendUserId(){
+
+        } */
 
 }

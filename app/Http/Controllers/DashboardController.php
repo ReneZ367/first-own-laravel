@@ -13,7 +13,7 @@ class DashboardController extends Controller
     {
         if (Auth::check()) {
             return view('dashboard.index', [
-                'birthdays' => User::find(Auth::user()->id)->birthdays,
+                'birthdays' => User::find(Auth::user()->id)->birthdays()->orderByRaw('STR_TO_DATE(date, "%d.%m")')->get(),
                 'userName' => Auth::user()->name,
             ]);
         } else {
