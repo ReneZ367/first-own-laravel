@@ -22,7 +22,7 @@
                     <x-form-label for="name">Datum</x-form-label>
 
                     <div>
-                        <x-form-input name="date" id="date" value="{{ $birthday['date'] }}" />
+                        <x-form-input name="date" id="date" value="{{ $birthday['birth_date'] }}" />
                         <x-form-error name="date" />
                     </div>
 
