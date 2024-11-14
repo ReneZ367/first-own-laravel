@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Friend;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -22,7 +23,6 @@ class DatabaseSeeder extends Seeder
             'password' => 1111111,
             'friend_id' => 111111,
         ]);
-
         User::factory()->create([
             'name' => 'Alexandra Kondratyuk',
             'email' => 'test2@gmx.de',
@@ -30,7 +30,6 @@ class DatabaseSeeder extends Seeder
             'password' => 1111111,
             'friend_id' => 222222,
         ]);
-
         User::factory()->create([
             'name' => 'kevin Soika',
             'email' => 'test3@gmx.de',
@@ -38,5 +37,23 @@ class DatabaseSeeder extends Seeder
             'password' => 1111111,
             'friend_id' => 333333,
         ]);
+
+        Friend::factory()->create([
+            'user_name' => 'Rene Zehl',
+            'user_friend_id' => 111111,
+            'friend_name' => 'Alexandra Kondratyuk',
+            'friend_id' => 222222,
+            'friend_user_id' => 2,
+            'accepted' => 1,
+        ]);
+        Friend::factory()->create([
+            'user_name' => 'Alexandra Kondratyuk',
+            'user_friend_id' => 222222,
+            'friend_name' => 'Rene Zehl',
+            'friend_id' => 111111,
+            'friend_user_id' => 1,
+            'accepted' => 1,
+        ]);
+
     }
 }
