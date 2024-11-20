@@ -39,7 +39,7 @@
         @if (!empty($friend_request))
             @foreach ($friend_request as $request)
                 <div class="flex rwo justify-between p-1">
-                    <p>{{ $request['friend_name'] }}</p>
+                    <p>{{ $request['user_name'] }}</p>
                     <div class="flex row">
                         <form action="/accept-friend/{{ $request['id'] }}" method="POST" class=" pr-1">
                             @csrf
