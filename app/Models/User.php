@@ -52,6 +52,11 @@ class User extends Authenticatable
     {
         return $this->hasMany(Birthday::class);
     }
+
+    public function friends()
+    {
+        return $this->hasMany(Friend::class); //manyToMany
+    }
     public static function fullname($firstName, $lastName): string
     {
         return "$firstName $lastName";

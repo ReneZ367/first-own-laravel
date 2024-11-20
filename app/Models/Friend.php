@@ -13,6 +13,12 @@ class Friend extends Model
         'user_friend_id',
         'friend_name',
         'friend_id',
+        'friend_user_id',
         'accepted',
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

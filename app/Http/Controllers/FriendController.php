@@ -35,6 +35,7 @@ class FriendController extends Controller
             'user_friend_id' => Auth::user()->friend_id,
             'friend_name' => User::where('friend_id', request('friend_id'))->value('name'),
             'friend_id' => User::where('friend_id', request('friend_id'))->value('friend_id'),
+            'friend_user_id' => User::where('friend_id', request('friend_id'))->value('id'),
             'accepted' => false,
         ];
 
@@ -63,6 +64,7 @@ class FriendController extends Controller
             'user_friend_id' => $id['friend_id'],
             'friend_name' => $id['user_name'],
             'friend_id' => $id['user_friend_id'],
+            'friend_user_id' => User::where('friend_id', $id['user_friend_id'])->value('id'),
             'accepted' => true,
         ];
 
@@ -84,8 +86,9 @@ class FriendController extends Controller
         return redirect('/friends');
     }
 
-    /*     public static function getFriendUserId(){
+    public static function getFriendUserId($friend_id)
+    {
 
-        } */
+    }
 
 }

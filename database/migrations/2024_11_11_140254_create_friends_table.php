@@ -16,6 +16,7 @@ return new class extends Migration {
             $table->integer('user_friend_id');
             $table->string('friend_name');
             $table->integer('friend_id');
+            $table->integer('friend_user_id');
             $table->boolean('accepted');
             $table->timestamps();
         });

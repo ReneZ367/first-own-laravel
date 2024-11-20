@@ -23,6 +23,7 @@ class FriendFactory extends Factory
             'user_friend_id' => fake()->numberBetween(100000, 999999),
             'friend_name' => fake()->name(),
             'friend_id' => fake()->numberBetween(100000, 999999),
+            'friend_user_id' => '2',
             'accepted' => fake()->numberBetween(0, 1),
         ];
     }
